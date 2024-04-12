@@ -86,8 +86,8 @@ namespace DataAccess.Concretes.Context
                     .HasMaxLength(500);
 
                 x.HasOne(x => x.Game)
-                .WithOne()
-                .HasForeignKey<GameDetail>(x => x.GameId);
+                .WithMany(g => g.GameImages)
+                .HasForeignKey(x => x.GameId);
             });
 
             modelBuilder.Entity<Streaming>(x =>
@@ -110,12 +110,12 @@ namespace DataAccess.Concretes.Context
                     .HasMaxLength(100);
 
                 x.HasOne(x => x.Game)
-                .WithOne()
-                .HasForeignKey<Streaming>(x => x.GameId);
+                .WithMany(g => g.Streamings)
+                .HasForeignKey(x => x.GameId);
 
                 x.HasOne(x => x.Streamer)
-                .WithOne()
-                .HasForeignKey<Streaming>(x => x.StreamerId);
+                .WithMany(s => s.Streamings)
+                .HasForeignKey(x => x.StreamerId);
             });
 
             modelBuilder.Entity<Streamer>(x =>
@@ -143,12 +143,12 @@ namespace DataAccess.Concretes.Context
                 .IsRequired();
 
                 x.HasOne(x => x.User)
-                .WithOne()
-                .HasForeignKey<UserGame>(x => x.UserId);
+                .WithMany(u => u.UserGames)
+                .HasForeignKey(x => x.UserId);
 
                 x.HasOne(x => x.Game)
-                .WithOne()
-                .HasForeignKey<UserGame>(x => x.GameId);
+                .WithMany(u => u.UserGames)
+                .HasForeignKey(x => x.GameId);
             });
         }
 
