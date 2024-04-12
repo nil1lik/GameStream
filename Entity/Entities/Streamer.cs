@@ -10,5 +10,6 @@ namespace Entity.Entities
     {
         public string Name { get; set; }
         public string ImageUrl { get; set; }
+        public ICollection<Streaming> Streamings { get; set; }
     }
 }

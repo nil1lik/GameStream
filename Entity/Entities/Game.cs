@@ -10,6 +10,9 @@ namespace Entity.Entities
     {
         public string Name { get; set; }
         public string ImageUrl { get; set; }
+        public ICollection<UserGame> UserGames { get; set; }
+        public ICollection<Streaming> Streamings { get; set; }
+        public ICollection<GameImage> GameImages { get; set; }
 
     }
 }
