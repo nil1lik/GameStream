@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Abstract;
 using Entity.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,29 +12,36 @@ namespace Business.Concrete
 {
     public class StreamerManager : IStreamerService
     {
+        private readonly IStreamerDal _streamerDal;
+
+        public StreamerManager(IStreamerDal streamerDal)
+        {
+            _streamerDal = streamerDal;
+        }
+
         public void Create(Streamer entity)
         {
-            throw new NotImplementedException();
+            _streamerDal.Create(entity);
         }
 
         public void Delete(Streamer entity)
         {
-            throw new NotImplementedException();
+            _streamerDal.Delete(entity);
         }
 
         public List<Streamer> GetAll(Expression<Func<Streamer, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _streamerDal.GetAll(filter);
         }
 
         public Streamer GetById(int id)
         {
-            throw new NotImplementedException();
+            return _streamerDal.GetById(id);
         }
 
         public void Update(Streamer entity)
         {
-            throw new NotImplementedException();
+            _streamerDal.Update(entity);
         }
     }
 }

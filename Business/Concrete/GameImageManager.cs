@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Abstract;
 using Entity.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,29 +12,36 @@ namespace Business.Concrete
 {
     public class GameImageManager : IGameImageService
     {
+        private readonly IGameImageDal _gameImageDal;
+
+        public GameImageManager(IGameImageDal gameImageDal)
+        {
+            _gameImageDal = gameImageDal;
+        }
+
         public void Create(GameImage entity)
         {
-            throw new NotImplementedException();
+            _gameImageDal.Create(entity);
         }
 
         public void Delete(GameImage entity)
         {
-            throw new NotImplementedException();
+            _gameImageDal.Delete(entity);
         }
 
         public List<GameImage> GetAll(Expression<Func<GameImage, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _gameImageDal.GetAll(filter);
         }
 
         public GameImage GetById(int id)
         {
-            throw new NotImplementedException();
+            return _gameImageDal.GetById(id);
         }
 
         public void Update(GameImage entity)
         {
-            throw new NotImplementedException();
+            _gameImageDal.Update(entity);
         }
     }
 }

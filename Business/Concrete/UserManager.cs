@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Abstract;
 using Entity.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,29 +12,36 @@ namespace Business.Concrete
 {
     public class UserManager : IUserService
     {
+        private readonly IUserDal _userDal;
+
+        public UserManager(IUserDal userDal)
+        {
+            _userDal = userDal;
+        }
+
         public void Create(User entity)
         {
-            throw new NotImplementedException();
+            _userDal.Create(entity);
         }
 
         public void Delete(User entity)
         {
-            throw new NotImplementedException();
+            _userDal.Delete(entity);
         }
 
         public List<User> GetAll(Expression<Func<User, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _userDal.GetAll(filter);
         }
 
         public User GetById(int id)
         {
-            throw new NotImplementedException();
+            return _userDal.GetById(id);
         }
 
         public void Update(User entity)
         {
-            throw new NotImplementedException();
+            _userDal.Update(entity);
         }
     }
 }
