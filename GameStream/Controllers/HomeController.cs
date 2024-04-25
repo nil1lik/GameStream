@@ -8,5 +8,20 @@ namespace GameStream.Controllers
         {
             return View();
         }
+
+        public IActionResult Browse()
+        {
+            return View();
+        }
+
+        public IActionResult Details()
+        {
+            return View();
+        }
+
+        public IActionResult Streams()
+        {
+            return View();
+        }
     }
 }
