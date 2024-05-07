@@ -1,0 +1,40 @@
+﻿@model GameStream.Models.DetailPageDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-content">
+
+                <!-- ***** Featured Start ***** -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="feature-banner header-text">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <img src=@Model.DetailsPageGameDetail.Logo alt="" style="border-radius: 23px; height: 250px;">
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="thumb">
+                                        <img src="https://i.ytimg.com/vi/5RSdUErFgX0/maxresdefault.jpg" alt="" style="border-radius: 23px; height: 250px;">
+                                        <a href=@Model.DetailsPageGameDetail.VideoUrl target="_blank"><i class="fa fa-play"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Featured End ***** -->
+                <!-- ***** Details Start ***** -->
+                @await Component.InvokeAsync("Details")
+                <!-- ***** Other Start ***** -->
+                @await Component.InvokeAsync("OtherRelatedGames")
+                <!-- ***** Other End ***** -->
+            </div>
+        </div>
+    </div>
+</div>
