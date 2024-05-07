@@ -9,7 +9,7 @@ namespace Business.Abstract
 {
     public interface IRepositoryBaseService<T> where T: class, new()
     {
-        List<T> GetAll(Expression<Func<T, bool>> filter);
+        List<T> GetAll(Expression<Func<T, bool>> filter = null);
         T GetById(int id);
         void Create(T entity);
         void Update(T entity);
