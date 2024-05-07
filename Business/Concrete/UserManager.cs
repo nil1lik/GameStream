@@ -34,6 +34,11 @@ namespace Business.Concrete
             return _userDal.GetAll(filter);
         }
 
+        public List<User> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public User GetById(int id)
         {
             return _userDal.GetById(id);

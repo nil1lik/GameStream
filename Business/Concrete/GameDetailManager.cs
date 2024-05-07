@@ -29,7 +29,7 @@ namespace Business.Concrete
             _gameDetailDal.Delete(entity);
         }
 
-        public List<GameDetail> GetAll(Expression<Func<GameDetail, bool>> filter)
+        public List<GameDetail> GetAll(Expression<Func<GameDetail, bool>> filter = null)
         {
             return _gameDetailDal.GetAll(filter);
         }

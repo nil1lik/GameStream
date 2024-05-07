@@ -34,6 +34,11 @@ namespace Business.Concrete
             return _streamerDal.GetAll(filter);
         }
 
+        public List<Streamer> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public Streamer GetById(int id)
         {
             return _streamerDal.GetById(id);

@@ -34,6 +34,11 @@ namespace Business.Concrete
             return _gameDal.GetAll(filter);
         }
 
+        public List<Game> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public Game GetById(int id)
         {
             return _gameDal.GetById(id);

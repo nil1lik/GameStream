@@ -33,6 +33,11 @@ namespace Business.Concrete
             return _streamingDal.GetAll(filter);
         }
 
+        public List<Streaming> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public Streaming GetById(int id)
         {
             return _streamingDal.GetById(id);
