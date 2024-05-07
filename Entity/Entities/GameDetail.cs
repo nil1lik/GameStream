@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entity.Entities
 {
-    public class GameDetail:BaseEntity<Guid>
+    public class GameDetail:BaseEntity<int>
     {
-        public Guid GameId { get; set; }
+        public int GameId { get; set; }
         public string GameType { get; set; }
         public string Platform { get; set; }
-        public double Rate { get; set; }
-        public long DownloadQuantity { get; set; }
+        public double? Rate { get; set; }
+        public long? DownloadQuantity { get; set; }
         public string DiskSize { get; set; }
         public string VideoUrl { get; set; }
         public string Description { get; set; }

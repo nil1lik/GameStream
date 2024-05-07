@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity.Entities
 {
-    public class Game : BaseEntity<Guid>
+    public class Game : BaseEntity<int>
     {
         public string Name { get; set; }
         public string ImageUrl { get; set; }

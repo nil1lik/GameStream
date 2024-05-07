@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entity.Entities
 {
-    public class Streaming:BaseEntity<Guid>
+    public class Streaming:BaseEntity<int>
     {
-        public Guid GameId { get; set; }
-        public Guid StreamerId { get; set; }
+        public int GameId { get; set; }
+        public int StreamerId { get; set; }
         public string Title { get; set; }
         public string GameName { get; set; }
 

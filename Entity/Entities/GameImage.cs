@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entity.Entities
 {
-    public class GameImage : BaseEntity<Guid>
+    public class GameImage : BaseEntity<int>
     {
-        public Guid GameId { get; set; }
+        public int GameId { get; set; }
         public string ImageUrl { get; set; }
-
         public Game Game { get; set; }
     }
 }

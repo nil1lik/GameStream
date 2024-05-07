@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entity.Entities
 {
-    public class UserGame : BaseEntity<Guid>
+    public class UserGame : BaseEntity<int>
     {
-        public Guid GameId { get; set; }
-        public Guid UserId { get; set; }
+        public int GameId { get; set; }
+        public int UserId { get; set; }
         public TimeSpan HoursPlayed { get; set; }
         public bool IsDownloaded { get; set; }
 
