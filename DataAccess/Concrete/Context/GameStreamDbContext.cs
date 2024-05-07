@@ -24,9 +24,22 @@ namespace DataAccess.Concretes.Context
                 x.ToTable("Users");
                 x.HasKey(e => e.Id);
 
+                x.Property(e => e.Id)
+                    .IsRequired()
+                    .UseIdentityColumn()
+                    .HasColumnName("UserID");
+
                 x.Property(e => e.FullName)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                x.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                x.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(100);
 
                 x.Property(e => e.Description)
                 .HasMaxLength(500);
@@ -35,12 +48,21 @@ namespace DataAccess.Concretes.Context
                 .IsRequired();
 
                 x.HasMany(e => e.UserGames);
+
+                x.Property(e => e.CreatedDate)
+            .IsRequired()
+            .HasDefaultValueSql("GETDATE()");
             });
 
             modelBuilder.Entity<Game>(x =>
             {
                 x.ToTable("Games");
                 x.HasKey(e => e.Id);
+
+                x.Property(e => e.Id)
+                    .IsRequired()
+                    .UseIdentityColumn()
+                    .HasColumnName("GameID");
 
                 x.Property(e => e.Name)
                     .IsRequired()
@@ -49,12 +71,22 @@ namespace DataAccess.Concretes.Context
                 x.Property(e => e.ImageUrl)
                     .IsRequired()
                     .HasMaxLength(500);
+
+                x.Property(e => e.CreatedDate)
+            .IsRequired()
+            .HasDefaultValueSql("GETDATE()");
             });
 
             modelBuilder.Entity<GameDetail>(x =>
             {
                 x.ToTable("GameDetails");
                 x.HasKey(e => e.Id);
+
+                x.Property(e => e.Id)
+                    .IsRequired()
+                    .UseIdentityColumn()
+                    .HasColumnName("GameDetailID");
+
                 x.Property(e => e.GameType)
                     .IsRequired()
                     .HasMaxLength(50);
@@ -63,6 +95,10 @@ namespace DataAccess.Concretes.Context
                     .HasMaxLength(100);
                 x.Property(e => e.DiskSize)
                     .IsRequired();
+                x.Property(e => e.DownloadQuantity)
+                    .IsRequired(false);
+                x.Property(e => e.Rate)
+                    .IsRequired(false);
                 x.Property(e => e.VideoUrl)
                     .IsRequired()
                     .HasMaxLength(500);
@@ -74,12 +110,21 @@ namespace DataAccess.Concretes.Context
                 .WithOne()
                 .HasForeignKey<GameDetail>(x => x.GameId);
 
+                x.Property(e => e.CreatedDate)
+            .IsRequired()
+            .HasDefaultValueSql("GETDATE()");
+
             });
 
             modelBuilder.Entity<GameImage>(x =>
             {
                 x.ToTable("GameImages");
                 x.HasKey(e => e.Id);
+
+                x.Property(e => e.Id)
+                    .IsRequired()
+                    .UseIdentityColumn()
+                    .HasColumnName("GameImageID");
 
                 x.Property(e => e.ImageUrl)
                     .IsRequired()
@@ -88,12 +133,21 @@ namespace DataAccess.Concretes.Context
                 x.HasOne(x => x.Game)
                 .WithMany(g => g.GameImages)
                 .HasForeignKey(x => x.GameId);
+
+                x.Property(e => e.CreatedDate)
+            .IsRequired()
+            .HasDefaultValueSql("GETDATE()");
             });
 
             modelBuilder.Entity<Streaming>(x =>
             {
                 x.ToTable("Streamings");
                 x.HasKey(e => e.Id);
+
+                x.Property(e => e.Id)
+                    .IsRequired()
+                    .UseIdentityColumn()
+                    .HasColumnName("StreamingID");
 
                 x.Property(x => x.GameId)
                 .IsRequired();
@@ -116,6 +170,10 @@ namespace DataAccess.Concretes.Context
                 x.HasOne(x => x.Streamer)
                 .WithMany(s => s.Streamings)
                 .HasForeignKey(x => x.StreamerId);
+
+                x.Property(e => e.CreatedDate)
+            .IsRequired()
+            .HasDefaultValueSql("GETDATE()");
             });
 
             modelBuilder.Entity<Streamer>(x =>
@@ -123,18 +181,32 @@ namespace DataAccess.Concretes.Context
                 x.ToTable("Streamers");
                 x.HasKey(e => e.Id);
 
+                x.Property(e => e.Id)
+                    .IsRequired()
+                    .UseIdentityColumn()
+                    .HasColumnName("StreamersID");
+
                 x.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
 
                 x.Property(e => e.ImageUrl)
                     .HasMaxLength(500);
+
+                x.Property(e => e.CreatedDate)
+            .IsRequired()
+            .HasDefaultValueSql("GETDATE()");
             });
 
             modelBuilder.Entity<UserGame>(x =>
             {
                 x.ToTable("UserGames");
                 x.HasKey(e => e.Id);
+
+                x.Property(e => e.Id)
+                    .IsRequired()
+                    .UseIdentityColumn()
+                    .HasColumnName("UserGameID");
 
                 x.Property(x => x.GameId)
                 .IsRequired();
@@ -149,7 +221,12 @@ namespace DataAccess.Concretes.Context
                 x.HasOne(x => x.Game)
                 .WithMany(u => u.UserGames)
                 .HasForeignKey(x => x.GameId);
+
+                x.Property(e => e.CreatedDate)
+            .IsRequired()
+            .HasDefaultValueSql("GETDATE()");
             });
+
         }
 
         public DbSet<Game> Games { get; set; }
@@ -161,4 +238,5 @@ namespace DataAccess.Concretes.Context
         public DbSet<UserGame> UserGames { get; set; }
 
     }
+
 }
