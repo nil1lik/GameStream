@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Business.Abstract;
 using Business.DT0s.GameDetail;
 using GameStream.Models;
@@ -6,17 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GameStream.Controllers
 {
-    public class HomeController : Controller
+    public class DetailController : Controller
     {
         private readonly IGameDetailService _gameDetailService;
         private readonly IMapper _mapper;
 
-        public HomeController(IGameDetailService gameDetailService, IMapper mapper)
+        public DetailController(IGameDetailService gameDetailService, IMapper mapper)
         {
             _gameDetailService = gameDetailService;
             _mapper = mapper;
         }
-        public IActionResult Index()
+
+        public IActionResult Detail(int id)
         {
             var gameDetail = new DetailPageDetailsViewModel
             {
@@ -25,12 +26,8 @@ namespace GameStream.Controllers
                 DetailsPageGameDetails = _mapper.Map<List<DetailsPageGameDetailDto>>(_gameDetailService.GetAll().ToList())
             };
 
-            return View(gameDetail);
+            return View(gameDetail); 
         }
 
-        public IActionResult Streams()
-        {
-            return View();
-        }
     }
 }
