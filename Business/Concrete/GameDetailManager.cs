@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
+using DataAccess.Concretes.Context;
 using Entity.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +33,32 @@ namespace Business.Concrete
 
         public List<GameDetail> GetAll(Expression<Func<GameDetail, bool>> filter = null)
         {
-            return _gameDetailDal.GetAll(filter);
+            using (var context = new GameStreamDbContext())
+            {
+                IQueryable<GameDetail> query = context.GameDetails.Include(g => g.Game).ThenInclude(g => g.GameImages);
+
+                if (filter != null)
+                {
+                    query = query.Where(filter);
+                }
+
+                return query.ToList();
+            }
         }
 
         public GameDetail GetById(int id)
         {
-            return _gameDetailDal.GetById(id);
+            using (var context = new GameStreamDbContext())
+            {
+                // GameDetailId'ye göre doğru kaydı çekecek şekilde sorguyu ayarlayın
+                var gameDetail = context.GameDetails
+                    .Where(gd => gd.Id == id) // Burada GameDetailId ile filtreleme yapılır
+                    .Include(gd => gd.Game)             // İlişkili Game bilgilerini dahil edin
+                    .ThenInclude(g => g.GameImages)    // Game ile ilişkili GameImages bilgilerini dahil edin
+                    .FirstOrDefault();                 // İlk veya varsayılan değeri döndür
+
+                return gameDetail; // Çekilen GameDetail nesnesini döndür
+            }
         }
 
         public void Update(GameDetail entity)
